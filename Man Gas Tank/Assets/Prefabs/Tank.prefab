@@ -435,8 +435,10 @@ MonoBehaviour:
   _bar: {fileID: 6126053762803243014}
   _volume: {fileID: 6126053763274105110}
   _maxVolume: 20
-  _secondsForFillOneLiter: 1
-  _secondsForEmptyOneLiter: 0.5
+  _secondsForFillOneLiter: 0.3
+  _secondsForEmptyOneLiter: 0.1
+  _followSpeed: 10
+  _returnSpeed: 10
   _debug: 0
   _initialLiters: 0
   _initialFuelType: 0

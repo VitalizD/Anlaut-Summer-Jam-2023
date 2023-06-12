@@ -1,4 +1,5 @@
 using Gameplay.FuelTanks;
+using Service.Controllers;
 using UnityEngine;
 
 namespace Gameplay.UI.Buttons.FuelToggles
@@ -17,19 +18,31 @@ namespace Gameplay.UI.Buttons.FuelToggles
         {
             FuelTank.TankFilled += Off;
             FuelTank.FillingTankEmptyStarted += Off;
+            FuelTank.FillingTankCaptured += Off;
             FuelTanksController.NoFreeTanks += Off;
+            GameController.SetActiveToggle += SetActive;
         }
 
         private void OnDisable()
         {
             FuelTank.TankFilled -= Off;
             FuelTank.FillingTankEmptyStarted -= Off;
+            FuelTank.FillingTankCaptured -= Off;
             FuelTanksController.NoFreeTanks -= Off;
+            GameController.SetActiveToggle -= SetActive;
         }
 
         private void Off()
         {
             _fuelToggle.Switch(false);
+        }
+
+        private void SetActive(FuelType fuelType, bool value)
+        {
+            if (fuelType == _fuelToggle.FuelType)
+            {
+                _fuelToggle.SetActive(value);
+            }
         }
     }
 }

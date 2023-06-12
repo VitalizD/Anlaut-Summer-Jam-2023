@@ -15,9 +15,16 @@ namespace Gameplay.UI.Buttons.FuelToggles
         public static event Action<FuelType> FuelToggleOn;
         public static event Action FuelToggleOff;
 
+        public FuelType FuelType => _fuelType;
+
         private void Awake()
         {
             _toggle.onValueChanged.AddListener(OnValueChanged);
+        }
+
+        public void SetActive(bool value)
+        {
+            gameObject.SetActive(value);
         }
 
         public void Switch(bool value)
