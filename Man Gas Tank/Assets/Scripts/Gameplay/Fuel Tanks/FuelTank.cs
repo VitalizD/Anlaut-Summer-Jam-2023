@@ -34,7 +34,7 @@ namespace Gameplay.FuelTanks
         public static event Action TankFilled;
         public static event Action FillingTankEmptyStarted;
         public static event Action TankAlreadyEmpty;
-        public static event Action FillingTankCaptured;
+        public static event Action<FuelType> FillingTankCaptured;
         public static event Func<FuelType, Color> GetFuelColor;
 
         public FuelType FuelType { get; private set; } = FuelType.None;
@@ -122,7 +122,7 @@ namespace Gameplay.FuelTanks
             transform.SetAsLastSibling();
             if (_isFilling)
             {
-                FillingTankCaptured?.Invoke();
+                FillingTankCaptured?.Invoke(FuelType);
             }
             Stop();
         }

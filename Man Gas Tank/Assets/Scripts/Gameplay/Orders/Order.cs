@@ -14,6 +14,7 @@ namespace Gameplay.Orders
         [SerializeField] private Animator _carAnimator;
         [SerializeField] private Animator _timerAnimator;
         [SerializeField] private Image _carImage;
+        [SerializeField] private Image _avatarImage;
         [SerializeField] private TMP_Text _nameText;
         [SerializeField] private TMP_Text _monologText;
         [SerializeField] private TMP_Text[] _requirementTexts;
@@ -37,12 +38,13 @@ namespace Gameplay.Orders
             _id = id;
         }
 
-        public void Generate((FuelType FuelType, float Count)[] requirements, Sprite car, float waitingTime,
-            string name, string monolog)
+        public void Generate((FuelType FuelType, float Count)[] requirements, Sprite car, Sprite avatar,
+            float waitingTime, string name, string monolog)
         {
             InProgress = true;
             _requirements = requirements;
             _carImage.sprite = car;
+            _avatarImage.sprite = avatar;
             _nameText.text = name;
             _monologText.text = monolog;
             _timerAnimator.SetBool(ANIM_Showed, true);

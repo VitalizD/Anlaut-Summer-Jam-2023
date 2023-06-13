@@ -24,7 +24,7 @@ namespace Gameplay.UI.Buttons.FuelToggles
 
         public void SetActive(bool value)
         {
-            gameObject.SetActive(value);
+            _toggle.gameObject.SetActive(value);
         }
 
         public void Switch(bool value)

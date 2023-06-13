@@ -1,4 +1,5 @@
 using Gameplay.Orders;
+using Service.Controllers;
 using UnityEngine;
 
 namespace Gameplay.UI.Counters
@@ -16,11 +17,13 @@ namespace Gameplay.UI.Counters
         private void OnEnable()
         {
             Order.AddResource += AddValue;
+            GameController.SetResource += SetValue;
         }
 
         private void OnDisable()
         {
             Order.AddResource -= AddValue;
+            GameController.SetResource -= SetValue;
         }
 
         private void SetValue(CounterType type, int value)

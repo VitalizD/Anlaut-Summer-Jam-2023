@@ -19,6 +19,7 @@ namespace Service.Controllers
 
         public static event Action LevelStarted;
         public static event Action<CounterType, int> SetSlashResource;
+        public static event Action<CounterType, int> SetResource;
         public static event Action<int, bool> SetActiveOrder;
         public static event Action<FuelType, bool> SetActiveToggle;
 
@@ -65,6 +66,7 @@ namespace Service.Controllers
         public void FinishLevel()
         {
             _level++;
+            SetResource?.Invoke(CounterType.Cars, 0);
             UpdateGameData();
             StartLevel();
         }

@@ -54,9 +54,10 @@ namespace Gameplay.Orders
             }
             var name = _transportStorageDict[transport].Names[UnityEngine.Random.Range(0, _transportStorageDict[transport].Names.Length)];
             var monolog = _transportStorageDict[transport].Phrases[UnityEngine.Random.Range(0, _transportStorageDict[transport].Phrases.Length)];
-            var sprite = _transportStorageDict[transport].Sprite;
+            var sprite = _transportStorageDict[transport].Sprites[UnityEngine.Random.Range(0, _transportStorageDict[transport].Sprites.Length)];
+            var avatar = _transportStorageDict[transport].Avatars[UnityEngine.Random.Range(0, _transportStorageDict[transport].Avatars.Length)];
             var waitingTime = UnityEngine.Random.Range(_transportStorageDict[transport].WaitingTimeLimits.x, _transportStorageDict[transport].WaitingTimeLimits.y);
-            _orders[orderIndex].Generate(requirements.ToArray(), sprite, waitingTime, name, monolog);
+            _orders[orderIndex].Generate(requirements.ToArray(), sprite, avatar, waitingTime, name, monolog);
 
             var debugText = $"Заказ {orderIndex}: {transport}, ";
             foreach (var requirenment in requirements)

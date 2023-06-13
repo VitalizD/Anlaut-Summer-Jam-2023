@@ -20,7 +20,6 @@ namespace Gameplay.UI.Buttons.FuelToggles
             FuelTank.FillingTankEmptyStarted += Off;
             FuelTank.FillingTankCaptured += Off;
             FuelTanksController.NoFreeTanks += Off;
-            GameController.SetActiveToggle += SetActive;
         }
 
         private void OnDisable()
@@ -29,7 +28,6 @@ namespace Gameplay.UI.Buttons.FuelToggles
             FuelTank.FillingTankEmptyStarted -= Off;
             FuelTank.FillingTankCaptured -= Off;
             FuelTanksController.NoFreeTanks -= Off;
-            GameController.SetActiveToggle -= SetActive;
         }
 
         private void Off()
@@ -37,11 +35,11 @@ namespace Gameplay.UI.Buttons.FuelToggles
             _fuelToggle.Switch(false);
         }
 
-        private void SetActive(FuelType fuelType, bool value)
+        private void Off(FuelType fuelType)
         {
-            if (fuelType == _fuelToggle.FuelType)
+            if (_fuelToggle.FuelType == fuelType)
             {
-                _fuelToggle.SetActive(value);
+                _fuelToggle.Switch(false);
             }
         }
     }

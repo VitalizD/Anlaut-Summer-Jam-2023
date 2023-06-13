@@ -202,8 +202,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3730979398200544887}
   - component: {fileID: 3730979398200544886}
-  - component: {fileID: 4064097762201376990}
-  - component: {fileID: 5196482308201282738}
+  - component: {fileID: 4322978621927178800}
+  - component: {fileID: 7647385109894164474}
   m_Layer: 5
   m_Name: Fuel Toggle
   m_TagString: Untagged
@@ -280,7 +280,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
---- !u!114 &4064097762201376990
+--- !u!114 &4322978621927178800
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -295,7 +295,7 @@ MonoBehaviour:
   _toggle: {fileID: 3730979398200544886}
   _animator: {fileID: 6811215733655376989}
   _fuelType: 0
---- !u!114 &5196482308201282738
+--- !u!114 &7647385109894164474
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -7,8 +7,9 @@ namespace Gameplay.Orders
     public class TransportData
     {
         public TransportType Type;
-        public Sprite Sprite;
         public Vector2 WaitingTimeLimits;
+        public Sprite[] Sprites;
+        public Sprite[] Avatars;
         public FuelType[] RequiredFuels;
         public string[] Names;
         public string[] Phrases;
