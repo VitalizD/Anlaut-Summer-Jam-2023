@@ -1,3 +1,4 @@
+using Service.Controllers;
 using UnityEngine;
 
 namespace Gameplay.UI.InfoWindow
@@ -14,12 +15,12 @@ namespace Gameplay.UI.InfoWindow
 
         private void OnEnable()
         {
-            
+            GameController.ShowInfoWindow += _informationWindow.Show;
         }
 
         private void OnDisable()
         {
-            
+            GameController.ShowInfoWindow -= _informationWindow.Show;
         }
     }
 }

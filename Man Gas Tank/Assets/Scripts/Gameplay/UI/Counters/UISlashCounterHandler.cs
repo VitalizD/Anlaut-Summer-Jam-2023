@@ -21,12 +21,14 @@ namespace Gameplay.UI.Counters
         {
             Order.AddSlashResource += AddValue;
             GameController.SetSlashResource += SetSlashValue;
+            GameController.SetResource += SetValue;
         }
 
         private void OnDisable()
         {
             Order.AddSlashResource -= AddValue;
             GameController.SetSlashResource -= SetSlashValue;
+            GameController.SetResource -= SetValue;
         }
 
         private void SetValue(CounterType type, int value)

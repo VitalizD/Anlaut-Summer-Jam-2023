@@ -17,13 +17,13 @@ namespace Gameplay.UI.Counters
         private void OnEnable()
         {
             Order.AddResource += AddValue;
-            GameController.SetResource += SetValue;
+            GameController.AddResource += AddValue;
         }
 
         private void OnDisable()
         {
             Order.AddResource -= AddValue;
-            GameController.SetResource -= SetValue;
+            GameController.AddResource -= AddValue;
         }
 
         private void SetValue(CounterType type, int value)

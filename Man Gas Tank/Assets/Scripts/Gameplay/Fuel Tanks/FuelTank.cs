@@ -31,8 +31,8 @@ namespace Gameplay.FuelTanks
         private bool _isReturning = false;
         private Camera _mainCamera;
 
-        public static event Action TankFilled;
-        public static event Action FillingTankEmptyStarted;
+        public static event Action<FuelType> TankFilled;
+        public static event Action<FuelType> FillingTankEmptyStarted;
         public static event Action TankAlreadyEmpty;
         public static event Action<FuelType> FillingTankCaptured;
         public static event Func<FuelType, Color> GetFuelColor;
@@ -70,7 +70,7 @@ namespace Gameplay.FuelTanks
         {
             if (_isFilling)
             {
-                FillingTankEmptyStarted?.Invoke();
+                FillingTankEmptyStarted?.Invoke(FuelType);
             }    
             Stop();
             StartCoroutine(Empty());
@@ -149,7 +149,7 @@ namespace Gameplay.FuelTanks
                 yield return new WaitForSeconds(Time.deltaTime);
             }
             _isFilling = false;
-            TankFilled?.Invoke();
+            TankFilled?.Invoke(FuelType);
         }
 
         private IEnumerator Empty()

@@ -1,4 +1,5 @@
 using Gameplay.FuelTanks;
+using Gameplay.Orders;
 using UnityEngine;
 
 namespace Gameplay.UI.FastMessages
@@ -20,16 +21,20 @@ namespace Gameplay.UI.FastMessages
         {
             FuelTanksController.NoFreeTanks += ShowNoFreeTanks;
             FuelTank.TankAlreadyEmpty += ShowTankAlreadyEmpty;
+            Order.IncomeGetted += ShowIncome;
         }
 
         private void OnDisable()
         {
             FuelTanksController.NoFreeTanks -= ShowNoFreeTanks;
             FuelTank.TankAlreadyEmpty -= ShowTankAlreadyEmpty;
+            Order.IncomeGetted -= ShowIncome;
         }
 
         private void ShowNoFreeTanks() => _fastMessage.Show(_noFreeTanks);
 
         private void ShowTankAlreadyEmpty() => _fastMessage.Show(_tankAlreadyEmpty);
+
+        private void ShowIncome(int income) => _fastMessage.Show($"{income} $");
     }
 }

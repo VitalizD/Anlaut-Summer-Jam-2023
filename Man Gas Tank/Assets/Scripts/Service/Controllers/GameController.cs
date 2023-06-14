@@ -1,6 +1,9 @@
+using Service.Storages;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace Service.Controllers
 {
@@ -10,6 +13,12 @@ namespace Service.Controllers
         [SerializeField] private MatchTransportCount[] _transportsCountsOnLevels;
         [Tooltip("index + 2 = order number")]
         [SerializeField] private int[] _levelsForNewOrder;
+        [Tooltip("index + 1 = level")]
+        [SerializeField] private int[] _fuelTanksOnLevels;
+        [Tooltip("index + 1 = level")]
+        [Multiline]
+        [SerializeField] private string[] _introductionOnLevels;
+        [SerializeField] private LevelData _levelData;
         [SerializeField] private int _level = 1;
 
         private List<FuelType> _availableFuels;
@@ -18,10 +27,16 @@ namespace Service.Controllers
         private bool _gasStationClosed = false;
 
         public static event Action LevelStarted;
+        public static event Action LevelCompleted;
         public static event Action<CounterType, int> SetSlashResource;
         public static event Action<CounterType, int> SetResource;
+        public static event Action<CounterType, int> AddResource;
         public static event Action<int, bool> SetActiveOrder;
         public static event Action<FuelType, bool> SetActiveToggle;
+        public static event Action<int> SetFuelTanksCount;
+        public static event Action<string, string, UnityAction, string> ShowInfoWindow;
+        public static event Func<int> GetMoney;
+        public static event Func<int> GetDay;
 
         private void Awake()
         {
@@ -65,10 +80,15 @@ namespace Service.Controllers
 
         public void FinishLevel()
         {
+            LevelCompleted?.Invoke();
             _level++;
+            AddResource?.Invoke(CounterType.Day, 1);
             SetResource?.Invoke(CounterType.Cars, 0);
             UpdateGameData();
-            StartLevel();
+            var statistics = $"Обслужено ТС: {_levelData.ServicedCars}\nЗаработано: {_levelData.Money} $\n" +
+                $"Всего: {GetMoney()} $";
+            ShowInfoWindow?.Invoke("Уровень пройден!", statistics, StartLevel, "ДАЛЬШЕ");
+            _levelData.Clear();
         }
 
         private void UpdateGameData()
@@ -86,6 +106,7 @@ namespace Service.Controllers
             {
                 SetActiveOrder?.Invoke(i + 1, _levelsForNewOrder[i] <= _level);
             }
+            SetFuelTanksCount?.Invoke(_fuelTanksOnLevels[_level - 1]);
         }
 
         private void StartLevel()
@@ -98,7 +119,21 @@ namespace Service.Controllers
                 transportsCount += info.Count;
             }
             SetSlashResource?.Invoke(CounterType.Cars, transportsCount);
-            LevelStarted?.Invoke();
+            UnityAction action = LevelStarted.Invoke;
+            var confirmText = "ПОНЯТНО";
+            if (_level <= 1)
+            {
+                action = () => ShowInfoWindow?.Invoke($"День {GetDay()}", "Сегодня клиентов не так много, ведь ты только открыл свою заправку. " +
+                    "Самое время их хорошо обслужить, чтобы сарафанное радио сделало своё дело. Да, тебе пока больше не на что надеяться." +
+                    "\n\n<color=red>ВАЖНО!!!</color> Запомни: легковым автомобилям нужно 10 литров бензина, а мотоциклам вдвое меньше!",
+                    LevelStarted.Invoke, "ПОНЯТНО");
+            }
+            else if (_level >= 6)
+            {
+                action = () => SceneManager.LoadScene(0);
+                confirmText = "ЗАНОВО";
+            }
+            ShowInfoWindow?.Invoke($"День {GetDay()}", $"{_introductionOnLevels[_level - 1]}", action, confirmText);
         }
     }
 }

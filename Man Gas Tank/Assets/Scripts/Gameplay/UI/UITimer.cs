@@ -13,6 +13,8 @@ namespace Gameplay.UI
 
         public bool Activated { get; private set; } = false;
 
+        public float BarValue => _progressBar.Value;
+
         public void Run(float seconds, UnityAction execute)
         {
             _remainSeconds = seconds;
@@ -21,6 +23,8 @@ namespace Gameplay.UI
             _progressBar.gameObject.SetActive(true);
             _progressBar.SetValue(1f);
         }
+
+        public void Add(float value) => _progressBar.AddValue(value);
 
         public void SetActive(bool value) => Activated = value;
 

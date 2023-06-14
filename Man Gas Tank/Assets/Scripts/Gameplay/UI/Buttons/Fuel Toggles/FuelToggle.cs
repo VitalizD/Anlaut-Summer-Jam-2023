@@ -13,7 +13,7 @@ namespace Gameplay.UI.Buttons.FuelToggles
         private readonly int ANIM_Pulsate = Animator.StringToHash("Pulsate");
 
         public static event Action<FuelType> FuelToggleOn;
-        public static event Action FuelToggleOff;
+        public static event Action<FuelType> FuelToggleOff;
 
         public FuelType FuelType => _fuelType;
 
@@ -41,7 +41,7 @@ namespace Gameplay.UI.Buttons.FuelToggles
             }
             else
             {
-                FuelToggleOff?.Invoke();
+                FuelToggleOff?.Invoke(_fuelType);
             }
         }
     }

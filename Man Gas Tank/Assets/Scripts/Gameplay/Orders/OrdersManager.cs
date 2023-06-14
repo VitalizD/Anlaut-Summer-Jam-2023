@@ -8,7 +8,6 @@ namespace Gameplay.Orders
     {
         [SerializeField] private Order[] _orders;
         [SerializeField] private TransportData[] _transportStorage;
-        [SerializeField] private Vector2 _requirementFuelLitersLimits;
 
         private readonly Dictionary<TransportType, TransportData> _transportStorageDict = new();
 
@@ -39,14 +38,19 @@ namespace Gameplay.Orders
             var requirements = new List<(FuelType, float)>();
             var transport = GetNextTransport();
             var fuels = _transportStorageDict[transport].RequiredFuels;
+            var fuelTypesCount = UnityEngine.Random.Range(1, 3);
             for (var i = 0; i < fuels.Length; ++i)
             {
+                if (i >= fuelTypesCount)
+                {
+                    break;
+                }
                 if (FuelIsAvailable(fuels[i]))
                 {
-                    var fuelCount = UnityEngine.Random.Range(_requirementFuelLitersLimits.x, _requirementFuelLitersLimits.y);
+                    var fuelCount = UnityEngine.Random.Range(_transportStorageDict[transport].FuelLitersLimits.x, _transportStorageDict[transport].FuelLitersLimits.y);
                     if (i > 0)
                     {
-                        fuelCount = UnityEngine.Random.Range(_requirementFuelLitersLimits.x, requirements[i - 1].Item2);
+                        fuelCount = UnityEngine.Random.Range(_transportStorageDict[transport].FuelLitersLimits.x, requirements[i - 1].Item2);
                     }
                     fuelCount = Mathf.Round(fuelCount);
                     requirements.Add((fuels[i], fuelCount));

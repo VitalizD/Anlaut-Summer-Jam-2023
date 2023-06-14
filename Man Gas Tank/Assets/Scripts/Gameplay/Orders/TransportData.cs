@@ -8,6 +8,7 @@ namespace Gameplay.Orders
     {
         public TransportType Type;
         public Vector2 WaitingTimeLimits;
+        public Vector2 FuelLitersLimits;
         public Sprite[] Sprites;
         public Sprite[] Avatars;
         public FuelType[] RequiredFuels;

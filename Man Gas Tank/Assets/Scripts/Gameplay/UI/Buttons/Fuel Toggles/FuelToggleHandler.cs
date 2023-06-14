@@ -20,6 +20,7 @@ namespace Gameplay.UI.Buttons.FuelToggles
             FuelTank.FillingTankEmptyStarted += Off;
             FuelTank.FillingTankCaptured += Off;
             FuelTanksController.NoFreeTanks += Off;
+            GameController.LevelCompleted += Off;
         }
 
         private void OnDisable()
@@ -28,6 +29,7 @@ namespace Gameplay.UI.Buttons.FuelToggles
             FuelTank.FillingTankEmptyStarted -= Off;
             FuelTank.FillingTankCaptured -= Off;
             FuelTanksController.NoFreeTanks -= Off;
+            GameController.LevelCompleted -= Off;
         }
 
         private void Off()

@@ -27,6 +27,10 @@ namespace Gameplay.FuelTanks
             var partialFuel = new List<FuelTank>();
             foreach (var tank in _fuelTanks)
             {
+                if (!tank.gameObject.activeSelf) 
+                {
+                    continue;
+                }
                 if (tank.FuelType == FuelType.None)
                 {
                     noFuel.Add(tank);
@@ -50,14 +54,33 @@ namespace Gameplay.FuelTanks
             }
         }
 
-        public void StopFill()
+        public void StopFill(FuelType fuelType)
         {
             foreach (var tank in _fuelTanks)
             {
-                tank.StopFill();
+                if (tank.FuelType == fuelType)
+                {
+                    tank.StopFill();
+                }
             }
         }
 
         public Color GetFuelColor(FuelType fuelType) => _fuelColorsDict[fuelType];
+
+        public void ClearAll()
+        {
+            foreach (var tank in _fuelTanks)
+            {
+                tank.Clear();
+            }
+        }
+
+        public void SetCount(int value)
+        {
+            for (var i = 0; i < _fuelTanks.Length; ++i)
+            {
+                _fuelTanks[i].gameObject.SetActive(i < value);
+            }
+        }
     }
 }

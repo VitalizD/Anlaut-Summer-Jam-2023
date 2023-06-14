@@ -13,6 +13,7 @@ namespace Gameplay.Orders
         [SerializeField] private Animator _monologAnimator;
         [SerializeField] private Animator _carAnimator;
         [SerializeField] private Animator _timerAnimator;
+        [SerializeField] private Animation _orderAnimation;
         [SerializeField] private Image _carImage;
         [SerializeField] private Image _avatarImage;
         [SerializeField] private TMP_Text _nameText;
@@ -30,6 +31,7 @@ namespace Gameplay.Orders
         public static event Action<CounterType, int> AddResource;
         public static event Action<CounterType, int> AddSlashResource;
         public static event Action<int> GenerateNewOrder;
+        public static event Action<int> IncomeGetted;
 
         public bool InProgress { get; private set; } = false;
 
@@ -83,23 +85,25 @@ namespace Gameplay.Orders
                 {
                     if (_requirements[i].Count <= 0)
                     {
-                        // רענאפ
+                        DoFine();
                     }
                     else if (tank.LitersCount > _requirements[i].Count)
                     {
                         tank.AddFuel(-_requirements[i].Count);
+                        _timer.Add(0.1f);
                         UpdateRequirement(i, 0f);
                     }
                     else
                     {
                         UpdateRequirement(i, _requirements[i].Count - tank.LitersCount);
+                        _timer.Add(0.1f);
                         tank.Clear();
                     }
                     CheckCompleted();
                     return;
                 }
             }
-            // רענאפ
+            DoFine();
         }
 
         private void Remove()
@@ -131,7 +135,9 @@ namespace Gameplay.Orders
                     return;
                 }
             }
-            AddResource?.Invoke(CounterType.Money, 10);
+            var income = (int)(10 + 10 * _timer.BarValue);
+            AddResource?.Invoke(CounterType.Money, income);
+            IncomeGetted?.Invoke(income);
             Remove();
         }
 
@@ -140,6 +146,12 @@ namespace Gameplay.Orders
             yield return new WaitForSeconds(_exitAnimationClip.length);
             InProgress = false;
             GenerateNewOrder?.Invoke(_id);
+        }
+
+        private void DoFine()
+        {
+            _orderAnimation.Play();
+            _timer.Add(-0.2f);
         }
     }
 }
