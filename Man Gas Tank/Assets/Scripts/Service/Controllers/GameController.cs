@@ -112,14 +112,17 @@ namespace Service.Controllers
 
         private void StartLevel()
         {
-            _gasStationClosed = false;
-            var transportsCount = 0;
-            _remainTransports = new List<MatchTransportCount>(_transportsCountsDict[_level]);
-            foreach (var info in _remainTransports)
+            if (_level < 6)
             {
-                transportsCount += info.Count;
+                _gasStationClosed = false;
+                var transportsCount = 0;
+                _remainTransports = new List<MatchTransportCount>(_transportsCountsDict[_level]);
+                foreach (var info in _remainTransports)
+                {
+                    transportsCount += info.Count;
+                }
+                SetSlashResource?.Invoke(CounterType.Cars, transportsCount);
             }
-            SetSlashResource?.Invoke(CounterType.Cars, transportsCount);
             UnityAction action = LevelStarted.Invoke;
             var confirmText = "œŒÕﬂ“ÕŒ";
             if (_level <= 1)
