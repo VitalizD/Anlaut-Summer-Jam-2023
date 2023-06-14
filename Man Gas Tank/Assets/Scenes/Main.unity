@@ -1466,7 +1466,7 @@ MonoBehaviour:
   - {fileID: 289593696}
   _transportStorage:
   - Type: 0
-    WaitingTimeLimits: {x: 20, y: 20}
+    WaitingTimeLimits: {x: 30, y: 30}
     FuelLitersLimits: {x: 5, y: 10}
     Sprites:
     - {fileID: 21300000, guid: 1ceba60043183e04381ab7de7078c9ab, type: 3}
@@ -1544,7 +1544,7 @@ MonoBehaviour:
       \u0432\u0441\u0435 \u0431\u0443\u0434\u0435\u0442 \u0445\u043E\u0440\u043E\u0448\u043E."
     - "\u042F \u0442\u0430\u043A \u0440\u0430\u0434 \u0432\u0430\u0441 \u0432\u0438\u0434\u0435\u0442\u044C!"
   - Type: 1
-    WaitingTimeLimits: {x: 15, y: 15}
+    WaitingTimeLimits: {x: 25, y: 25}
     FuelLitersLimits: {x: 5, y: 10}
     Sprites:
     - {fileID: 21300000, guid: 3e652f1a8509dff4da06f26f36003029, type: 3}
@@ -1598,7 +1598,7 @@ MonoBehaviour:
     - "\u0418\u0437 \u0434\u0432\u0443\u0445 \u0437\u043E\u043B \u044F \u043F\u0440\u0435\u0434\u043F\u043E\u0447\u0442\u0443
       \u043D\u0438\u0447\u0435\u0433\u043E \u043D\u0435 \u0432\u044B\u0431\u0438\u0440\u0430\u0442\u044C."
   - Type: 2
-    WaitingTimeLimits: {x: 20, y: 20}
+    WaitingTimeLimits: {x: 30, y: 30}
     FuelLitersLimits: {x: 10, y: 15}
     Sprites:
     - {fileID: 21300000, guid: 91fbcdaaf2469d0458108b591dc0c531, type: 3}
@@ -1654,7 +1654,7 @@ MonoBehaviour:
     - "\u0418\u0437 \u0434\u0432\u0443\u0445 \u0437\u043E\u043B \u044F \u043F\u0440\u0435\u0434\u043F\u043E\u0447\u0442\u0443
       \u043D\u0438\u0447\u0435\u0433\u043E \u043D\u0435 \u0432\u044B\u0431\u0438\u0440\u0430\u0442\u044C."
   - Type: 3
-    WaitingTimeLimits: {x: 30, y: 30}
+    WaitingTimeLimits: {x: 40, y: 40}
     FuelLitersLimits: {x: 20, y: 25}
     Sprites:
     - {fileID: 21300000, guid: ee259fb2fa066fb45b6bdeae7b132cae, type: 3}
@@ -1712,7 +1712,7 @@ MonoBehaviour:
     - "\u0418\u0437 \u0434\u0432\u0443\u0445 \u0437\u043E\u043B \u044F \u043F\u0440\u0435\u0434\u043F\u043E\u0447\u0442\u0443
       \u043D\u0438\u0447\u0435\u0433\u043E \u043D\u0435 \u0432\u044B\u0431\u0438\u0440\u0430\u0442\u044C."
   - Type: 4
-    WaitingTimeLimits: {x: 10, y: 30}
+    WaitingTimeLimits: {x: 15, y: 40}
     FuelLitersLimits: {x: 5, y: 20}
     Sprites:
     - {fileID: 21300000, guid: d2fb6e5a0c7d4a8479a37df13d33fffc, type: 3}
