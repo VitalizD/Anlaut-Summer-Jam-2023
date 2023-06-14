@@ -1,6 +1,7 @@
 using Service.Storages;
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -125,7 +126,7 @@ namespace Service.Controllers
             {
                 action = () => ShowInfoWindow?.Invoke($"День {GetDay()}", "Сегодня клиентов не так много, ведь ты только открыл свою заправку. " +
                     "Самое время их хорошо обслужить, чтобы сарафанное радио сделало своё дело. Да, тебе пока больше не на что надеяться." +
-                    "\n\n<color=red>ВАЖНО!!!</color> Запомни: легковым автомобилям нужно 10 литров бензина, а мотоциклам вдвое меньше!",
+                    "\n\n<color=red>ВАЖНО!!!</color> Запомни: легковым автомобилям и мотоциклам нужно столько бензина, сколько они закажут.",
                     LevelStarted.Invoke, "ПОНЯТНО");
             }
             else if (_level >= 6)
@@ -134,6 +135,18 @@ namespace Service.Controllers
                 confirmText = "ЗАНОВО";
             }
             ShowInfoWindow?.Invoke($"День {GetDay()}", $"{_introductionOnLevels[_level - 1]}", action, confirmText);
+        }
+
+        public void ShowHelp()
+        {
+            var introduction = $"{_introductionOnLevels[_level - 1]}";
+            if (_level <= 1)
+            {
+                introduction = "Сегодня клиентов не так много, ведь ты только открыл свою заправку. " +
+                    "Самое время их хорошо обслужить, чтобы сарафанное радио сделало своё дело. Да, тебе пока больше не на что надеяться." +
+                    "\n\n<color=red>ВАЖНО!!!</color> Запомни: легковым автомобилям и мотоциклам нужно столько бензина, сколько они закажут.";
+            }
+            ShowInfoWindow?.Invoke($"День {GetDay()}", introduction, null, "ПОНЯТНО");
         }
     }
 }
