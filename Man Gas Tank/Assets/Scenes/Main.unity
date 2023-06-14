@@ -3090,7 +3090,7 @@ MonoBehaviour:
     \u043D\u0430\u0447\u0430\u0442\u044C \u0438\u0433\u0440\u0430\u0442\u044C \u0441
     \u043F\u0435\u0440\u0432\u043E\u0433\u043E \u0443\u0440\u043E\u0432\u043D\u044F."
   _levelData: {fileID: 410742281}
-  _level: 5
+  _level: 1
 --- !u!114 &1098418232
 MonoBehaviour:
   m_ObjectHideFlags: 0
